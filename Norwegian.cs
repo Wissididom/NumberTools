@@ -1,7 +1,7 @@
 public class Norwegian
 {
 
-    public static string GetNumber(ulong number, bool noOg = false)
+    public static string GetNumber(ulong number)
     {
         if (number == 0UL)
         {
