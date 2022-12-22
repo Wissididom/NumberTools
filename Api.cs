@@ -1,6 +1,8 @@
-public class Api {
+public class Api
+{
 
-    public enum Language {
+    public enum Language
+    {
         ROMAN,
         GERMAN,
         ENGLISH,
@@ -13,8 +15,10 @@ public class Api {
         HEXADECIMAL
     }
 
-    public static string GetNumber(Language language, ulong number) {
-        switch (language) {
+    public static string GetNumber(Language language, ulong number)
+    {
+        switch (language)
+        {
             case Language.ROMAN:
                 return Api.GetRomanNumber(number);
             case Language.GERMAN:
@@ -40,49 +44,61 @@ public class Api {
         }
     }
 
-    public static string GetRomanNumber(ulong number) {
+    public static string GetRomanNumber(ulong number)
+    {
         return Roman.GetNumber(number);
     }
 
-    public static string GetGermanNumber(ulong number) {
+    public static string GetGermanNumber(ulong number)
+    {
         return German.GetNumber(number);
     }
 
-    public static string GetEnglishNumber(ulong number) {
+    public static string GetEnglishNumber(ulong number)
+    {
         return English.GetNumber(number);
     }
 
-    public static string GetDutchNumber(ulong number) {
+    public static string GetDutchNumber(ulong number)
+    {
         return Dutch.GetNumber(number);
     }
 
-    public static string GetNorwegianNumber(ulong number) {
+    public static string GetNorwegianNumber(ulong number)
+    {
         return Norwegian.GetNumber(number);
     }
 
-    public static string GetJapaneseNumber(ulong number) {
+    public static string GetJapaneseNumber(ulong number)
+    {
         return Japanese.GetNumber(number);
     }
 
-    public static string GetEsperantoNumber(ulong number) {
+    public static string GetEsperantoNumber(ulong number)
+    {
         return Esperanto.GetNumber(number);
     }
 
-    public static string GetVampirschwesternNumber(ulong number) {
+    public static string GetVampirschwesternNumber(ulong number)
+    {
         return Vampirschwestern.GetNumber(number);
     }
 
-    public static string GetBinaryNumber(ulong number) {
+    public static string GetBinaryNumber(ulong number)
+    {
         return Binary.GetNumber(number);
     }
 
-    public static string GetHexNumber(ulong number) {
+    public static string GetHexNumber(ulong number)
+    {
         return Hexadecimal.GetNumber(number);
     }
 
-    public static string AppendMultiple(string str, string toAppend, uint count) {
+    public static string AppendMultiple(string str, string toAppend, uint count)
+    {
         string result = str;
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < count; i++)
+        {
             result += toAppend;
         }
         return result;

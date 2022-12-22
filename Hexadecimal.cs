@@ -1,6 +1,8 @@
-public class Hexadecimal {
+public class Hexadecimal
+{
 
-    public static string GetNumber(ulong number) {
+    public static string GetNumber(ulong number)
+    {
         return number.ToString("X");
     }
 }
