@@ -18,7 +18,7 @@
             0x800000000, 0x1000000000, 0x2000000000, 0x4000000000, 0x8000000000, 0x10000000000
         };
         for (int i = 0; i < numbersToTest.Length; i++) {
-            Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.DUTCH, numbersToTest[i]));
+            Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.NORWEGIAN, numbersToTest[i]));
         }
     }
 }
