@@ -1,6 +1,6 @@
 public class Norwegian {
     
-    public static string GetNumber(ulong number) {
+    public static string GetNumber(ulong number, bool noOg = false) {
         if (number == 0UL) {
             return "null";
         } else if (number == 1UL) {
@@ -62,33 +62,48 @@ public class Norwegian {
         } else if (number == 100UL) {
             return "hundre";
         } else if (number < 200UL) {
-            return "hundre" + Norwegian.GetNumber(number % 100UL);
+            return "hundre og " + Norwegian.GetNumber(number % 100UL);
         } else if (number < 1000UL) {
-            return Norwegian.GetNumber((ulong) Math.Floor((double) number / 100)) + "hundre" + Norwegian.GetNumber(number % 100UL).Replace("null", "");
+            string rightPart = Norwegian.GetNumber(number % 100UL).Replace("null", "");
+            bool isNextBig = rightPart.Contains("hundre") || rightPart.Contains("tusen") || rightPart.Contains("million") || rightPart.Contains("milliard") || rightPart.Contains("billion");
+            if (isNextBig || rightPart.Trim().Length < 1)
+                return Norwegian.GetNumber((ulong) Math.Floor((double) number / 100)) + "hundre " + Norwegian.GetNumber(number % 100UL).Replace("null", "");
+            else
+                return Norwegian.GetNumber((ulong) Math.Floor((double) number / 100)) + "hundre og " + Norwegian.GetNumber(number % 100UL).Replace("null", "");
         } else if (number == 1000UL) {
             return "tusen";
         } else if (number < 2000UL) {
-            return "tusen" + Norwegian.GetNumber(number % 1000UL);
+            string rightPart = Norwegian.GetNumber(number % 1000UL).Replace("null", "");
+            bool isNextBig = rightPart.Contains("hundre") || rightPart.Contains("tusen") || rightPart.Contains("million") || rightPart.Contains("milliard") || rightPart.Contains("billion");
+            if (isNextBig || rightPart.Trim().Length < 1)
+                return "tusen " + rightPart;
+            else
+                return "tusen og " + rightPart;
         } else if (number < 1000000UL) {
-            return Norwegian.GetNumber((ulong) Math.Floor((double) number / 1000)) + "tusen" + Norwegian.GetNumber(number % 1000UL).Replace("null", "");
+            string rightPart = Norwegian.GetNumber(number % 1000UL).Replace("null", "");
+            bool isNextBig = rightPart.Contains("hundre") || rightPart.Contains("tusen") || rightPart.Contains("million") || rightPart.Contains("milliard") || rightPart.Contains("billion");
+            if (isNextBig || rightPart.Trim().Length < 1)
+                return Norwegian.GetNumber((ulong) Math.Floor((double) number / 1000)) + "tusen " + rightPart;
+            else
+                return Norwegian.GetNumber((ulong) Math.Floor((double) number / 1000)) + "tusen og " + rightPart;
         } else if (number == 1000000UL) {
-            return "million";
+            return "en million";
         } else if (number < 2000000UL) {
-            return "million" + Norwegian.GetNumber(number % 1000000UL);
+            return "en million " + Norwegian.GetNumber(number % 1000000UL);
         } else if (number < 1000000000UL) {
-            return Norwegian.GetNumber((ulong) Math.Floor((double) number / 1000000)) + "million" + Norwegian.GetNumber(number % 100000UL).Replace("null", "");
+            return Norwegian.GetNumber((ulong) Math.Floor((double) number / 1000000)) + " millioner " + Norwegian.GetNumber(number % 100000UL).Replace("null", "");
         } else if (number == 1000000000UL) {
-            return "milliard";
+            return "en milliard";
         } else if (number < 2000000000UL) {
-            return "milliard" + Norwegian.GetNumber(number % 1000000UL);
+            return "en milliard " + Norwegian.GetNumber(number % 1000000UL);
         } else if (number < 1000000000000UL) {
-            return Norwegian.GetNumber((ulong) Math.Floor((double) number / 1000000000)) + "milliard" + Norwegian.GetNumber(number % 100000000UL).Replace("null", "");
+            return Norwegian.GetNumber((ulong) Math.Floor((double) number / 1000000000)) + " milliarder " + Norwegian.GetNumber(number % 100000000UL).Replace("null", "");
         } else if (number == 1000000000000UL) {
-            return "billion";
+            return "en billion";
         } else if (number < 2000000000000UL) {
-            return "billion" + Norwegian.GetNumber(number % 1000000000UL);
+            return "en billion og " + Norwegian.GetNumber(number % 1000000000UL);
         } else if (number < 1000000000000000UL) {
-            return Norwegian.GetNumber((ulong) Math.Floor((double) number / 1000000000000)) + "milliard" + Norwegian.GetNumber(number % 100000000000UL).Replace("null", "");
+            return Norwegian.GetNumber((ulong) Math.Floor((double) number / 1000000000000)) + " billioner " + Norwegian.GetNumber(number % 100000000000UL).Replace("null", "");
         }
         return "";
     }
