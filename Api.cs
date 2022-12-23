@@ -7,6 +7,7 @@ public class Api
         GERMAN,
         ENGLISH,
         FRENCH,
+        SPANISH,
         DUTCH,
         NORWEGIAN,
         JAPANESE,
@@ -28,6 +29,8 @@ public class Api
                 return Api.GetEnglishNumber(number);
             case Language.FRENCH:
                 return Api.GetFrenchNumber(number);
+            case Language.SPANISH:
+                return Api.GetSpanishNumber(number);
             case Language.DUTCH:
                 return Api.GetDutchNumber(number);
             case Language.NORWEGIAN:
@@ -65,6 +68,10 @@ public class Api
     public static string GetFrenchNumber(ulong number)
     {
         return French.GetNumber(number);
+    }
+
+    public static string GetSpanishNumber(ulong number) {
+        return Spanish.GetNumber(number);
     }
 
     public static string GetDutchNumber(ulong number)
