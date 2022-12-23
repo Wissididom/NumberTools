@@ -14,6 +14,7 @@
             //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.ROMAN, numbersToTest[i]));
             //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.GERMAN, numbersToTest[i]));
             //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.ENGLISH, numbersToTest[i]));
+            //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.FRENCH, numbersToTest[i]));
             //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.DUTCH, numbersToTest[i]));
             Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.NORWEGIAN, numbersToTest[i]));
             //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.JAPANESE, numbersToTest[i]));
