@@ -55,9 +55,13 @@ public class German
         {
             return "Zwölf";
         }
+        else if (number == 16UL)
+        {
+            return "Sechzehn";
+        }
         else if (number < 20UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(1))).Replace("Sieben", "Sieb") + "zehn";
+            return German.GetNumber(number % 10UL).Replace("Sieben", "Sieb") + "zehn";
         }
         else if (number == 20UL)
         {
@@ -65,7 +69,7 @@ public class German
         }
         else if (number < 30UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(1))).Replace("Eins", "Ein") + "undzwanzig";
+            return German.GetNumber(number % 10UL).Replace("Eins", "Ein") + "undzwanzig";
         }
         else if (number == 30UL)
         {
@@ -73,7 +77,7 @@ public class German
         }
         else if (number < 40UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(1))).Replace("Eins", "Ein") + "undreißig";
+            return German.GetNumber(number % 10UL).Replace("Eins", "Ein") + "undreißig";
         }
         else if (number == 40UL)
         {
@@ -81,7 +85,7 @@ public class German
         }
         else if (number < 50UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(1))).Replace("Eins", "Ein") + "undvierzig";
+            return German.GetNumber(number % 10UL).Replace("Eins", "Ein") + "undvierzig";
         }
         else if (number == 50UL)
         {
@@ -89,7 +93,7 @@ public class German
         }
         else if (number < 60UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(1))).Replace("Eins", "Ein") + "undfünfzig";
+            return German.GetNumber(number % 10UL).Replace("Eins", "Ein") + "undfünfzig";
         }
         else if (number == 60UL)
         {
@@ -97,7 +101,7 @@ public class German
         }
         else if (number < 70UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(1))).Replace("Eins", "Ein") + "undsechzig";
+            return German.GetNumber(number % 10UL).Replace("Eins", "Ein") + "undsechzig";
         }
         else if (number == 70UL)
         {
@@ -105,7 +109,7 @@ public class German
         }
         else if (number < 80UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(1))).Replace("Eins", "Ein") + "undsiebzig";
+            return German.GetNumber(number % 10UL).Replace("Eins", "Ein") + "undsiebzig";
         }
         else if (number == 80UL)
         {
@@ -113,208 +117,208 @@ public class German
         }
         else if (number < 90UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(1))).Replace("Eins", "Ein") + "undachtzig";
+            return German.GetNumber(number % 10UL).Replace("Eins", "Ein") + "undachtzig";
         }
         else if (number == 90UL)
         {
             return "Neunzig";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 2U)))
+        else if (number < 100UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(1))).Replace("Eins", "Ein") + "undneunzig";
+            return German.GetNumber(number % 10UL).Replace("Eins", "Ein") + "undneunzig";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 3U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 2U)) == 0UL)
+        else if (number < 1000UL && number % 100UL == 0UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))).Replace("Eins", "Ein") + "hundert";
+            return German.GetNumber(number / 100UL).Replace("Eins", "Ein") + "hundert";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 3U)))
+        else if (number < 1000UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))).Replace("Eins", "Ein") + "hundert" + German.GetNumber(ulong.Parse(number.ToString().Substring(1))).ToLower();
+            return German.GetNumber(number / 100UL).Replace("Eins", "Ein") + "hundert" + German.GetNumber(number % 100UL).ToLower();
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 4U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 3U)) == 0UL)
+        else if (number < 10000UL && number % 1000UL == 0UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))).Replace("Eins", "Ein") + "tausend";
+            return German.GetNumber(number / 1000UL).Replace("Eins", "Ein") + "tausend";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 4U)))
+        else if (number < 10000UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))).Replace("Eins", "Ein") + "tausend" + German.GetNumber(ulong.Parse(number.ToString().Substring(1))).ToLower();
+            return German.GetNumber(number / 1000UL).Replace("Eins", "Ein") + "tausend" + German.GetNumber(number % 1000UL).ToLower();
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 5U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 4U)) == 0UL)
+        else if (number < 100000UL && number % 10000UL == 0UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))).Replace("Eins", "Ein") + "tausend";
+            return German.GetNumber(number / 1000UL).Replace("Eins", "Ein") + "tausend";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 5U)))
+        else if (number < 100000UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))).Replace("Eins", "Ein") + "tausend" + German.GetNumber(ulong.Parse(number.ToString().Substring(2))).ToLower();
+            return German.GetNumber(number / 1000UL).Replace("Eins", "Ein") + "tausend" + German.GetNumber(number % 1000UL).ToLower();
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 6U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 5U)) == 0UL)
+        else if (number < 1000000UL && number % 100000UL == 0UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))).Replace("Eins", "Ein") + "tausend";
+            return German.GetNumber(number / 1000UL).Replace("Eins", "Ein") + "tausend";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 6U)))
+        else if (number < 1000000UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))).Replace("Eins", "Ein") + "tausend" + German.GetNumber(ulong.Parse(number.ToString().Substring(3))).ToLower();
+            return German.GetNumber(number / 1000UL).Replace("Eins", "Ein") + "tausend" + German.GetNumber(number % 1000UL).ToLower();
         }
-        else if (number == ulong.Parse(Api.AppendMultiple("1", "0", 6U)))
+        else if (number == 1000000UL)
         {
             return "Eine Million";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("2", "0", 6U)))
+        else if (number < 2000000UL)
         {
-            return "Eine Million " + German.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "Eine Million " + German.GetNumber(number % 1000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 7U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 6U)) == 0UL)
+        else if (number < 10000000UL && number % 1000000UL == 0UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " Millionen";
+            return German.GetNumber(number / 1000000UL) + " Millionen";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 7U)))
+        else if (number < 10000000UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " Millionen " + German.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return German.GetNumber(number / 1000000UL) + " Millionen " + German.GetNumber(number % 1000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 8U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 7U)) == 0UL)
+        else if (number < 100000000UL && number % 10000000UL == 0UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " Millionen";
+            return German.GetNumber(number / 1000000UL) + " Millionen";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 8U)))
+        else if (number < 100000000UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " Millionen " + German.GetNumber(ulong.Parse(number.ToString().Substring(2)));
+            return German.GetNumber(number / 1000000UL) + " Millionen " + German.GetNumber(number % 1000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 9U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 8U)) == 0UL)
+        else if (number < 1000000000UL && number % 100000000UL == 0UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " Millionen";
+            return German.GetNumber(number / 1000000UL) + " Millionen";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 9U)))
+        else if (number < 1000000000UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " Millionen " + German.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return German.GetNumber(number / 1000000UL) + " Millionen " + German.GetNumber(number % 1000000UL);
         }
-        else if (number == ulong.Parse(Api.AppendMultiple("1", "0", 9U)))
+        else if (number == 1000000000UL)
         {
             return "Eine Milliarde";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("2", "0", 9U)))
+        else if (number < 2000000000UL)
         {
-            return "Eine Milliarde " + German.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "Eine Milliarde " + German.GetNumber(number % 1000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 10U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 9U)) == 0UL)
+        else if (number < 10000000000UL && number % 1000000000UL == 0UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " Milliarden";
+            return German.GetNumber(number / 1000000000UL) + " Milliarden";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 10U)))
+        else if (number < 10000000000UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " Milliarden " + German.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return German.GetNumber(number / 1000000000UL) + " Milliarden " + German.GetNumber(number % 1000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 11U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 10U)) == 0UL)
+        else if (number < 100000000000UL && number % 10000000000UL == 0UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " Milliarden";
+            return German.GetNumber(number / 1000000000UL) + " Milliarden";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 11U)))
+        else if (number < 100000000000UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " Milliarden " + German.GetNumber(ulong.Parse(number.ToString().Substring(2)));
+            return German.GetNumber(number / 1000000000UL) + " Milliarden " + German.GetNumber(number % 1000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 12U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 11U)) == 0UL)
+        else if (number < 1000000000000 && number % 100000000000UL == 0UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " Milliarden";
+            return German.GetNumber(number / 1000000000UL) + " Milliarden";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 12U)))
+        else if (number < 1000000000000UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " Milliarden " + German.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return German.GetNumber(number / 1000000000UL) + " Milliarden " + German.GetNumber(number % 1000000000UL);
         }
-        else if (number == ulong.Parse(Api.AppendMultiple("1", "0", 12U)))
+        else if (number == 1000000000000UL)
         {
             return "Eine Billion";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("2", "0", 12U)))
+        else if (number < 2000000000000UL)
         {
-            return "Eine Billion " + German.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "Eine Billion " + German.GetNumber(number % 1000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 13U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 12U)) == 0UL)
+        else if (number < 10000000000000UL && number % 1000000000000UL == 0UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " Billionen";
+            return German.GetNumber(number / 1000000000000UL) + " Billionen";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 13U)))
+        else if (number < 10000000000000UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " Billionen " + German.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return German.GetNumber(number / 1000000000000UL) + " Billionen " + German.GetNumber(number % 1000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 14U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 13U)) == 0UL)
+        else if (number < 100000000000000UL && number % 10000000000000UL == 0UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " Billionen";
+            return German.GetNumber(number / 1000000000000UL) + " Billionen";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 14U)))
+        else if (number < 100000000000000UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " Billionen " + German.GetNumber(ulong.Parse(number.ToString().Substring(2)));
+            return German.GetNumber(number / 1000000000000UL) + " Billionen " + German.GetNumber(number % 1000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 15U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 14U)) == 0UL)
+        else if (number < 1000000000000000UL && number % 100000000000000UL == 0UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " Billionen";
+            return German.GetNumber(number / 1000000000000UL) + " Billionen";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 15U)))
+        else if (number < 1000000000000000UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " Billionen " + German.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return German.GetNumber(number / 1000000000000UL) + " Billionen " + German.GetNumber(number % 1000000000000UL);
         }
-        else if (number == ulong.Parse(Api.AppendMultiple("1", "0", 15U)))
+        else if (number == 1000000000000000UL)
         {
             return "Eine Billiarde";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("2", "0", 15U)))
+        else if (number < 1000000000000000UL)
         {
-            return "Eine Billiarde " + German.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "Eine Billiarde " + German.GetNumber(number % 1000000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 16U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 15U)) == 0UL)
+        else if (number < 10000000000000000UL && number % 1000000000000000UL == 0UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " Billiarden";
+            return German.GetNumber(number / 1000000000000000UL) + " Billiarden";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 16U)))
+        else if (number < 10000000000000000UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " Billiarden " + German.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return German.GetNumber(number / 1000000000000000UL) + " Billiarden " + German.GetNumber(number % 1000000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 17U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 16U)) == 0UL)
+        else if (number < 100000000000000000UL && number % 10000000000000000UL == 0UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " Billiarden";
+            return German.GetNumber(number / 1000000000000000UL) + " Billiarden";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 17U)))
+        else if (number < 100000000000000000UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " Billiarden " + German.GetNumber(ulong.Parse(number.ToString().Substring(2)));
+            return German.GetNumber(number / 1000000000000000UL) + " Billiarden " + German.GetNumber(number % 1000000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 18U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 17U)) == 0UL)
+        else if (number < 1000000000000000000UL && number % 100000000000000000UL == 0UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " Billiarden";
+            return German.GetNumber(number / 1000000000000000UL) + " Billiarden";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 18U)))
+        else if (number < 1000000000000000000UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " Billiarden " + German.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return German.GetNumber(number / 1000000000000000UL) + " Billiarden " + German.GetNumber(number % 1000000000000000UL);
         }
-        else if (number == ulong.Parse(Api.AppendMultiple("1", "0", 18U)))
+        else if (number == 1000000000000000000UL)
         {
             return "Eine Trillion";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("2", "0", 18U)))
+        else if (number < 2000000000000000000)
         {
-            return "Eine Trillion " + German.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "Eine Trillion " + German.GetNumber(number % 1000000000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 19U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 18U)) == 0UL)
+        else if (number < 10000000000000000000UL && number % 1000000000000000000UL == 0UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " Trillionen";
+            return German.GetNumber(number / 1000000000000000000UL) + " Trillionen";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 19U)))
+        else if (number < 10000000000000000000UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " Trillionen " + German.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return German.GetNumber(number / 1000000000000000000UL) + " Trillionen " + German.GetNumber(number % 1000000000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 20U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 19U)) == 0UL)
+        /*else if (number < 100000000000000000000UL && number % 10000000000000000000UL == 0UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " Trillionen";
+            return German.GetNumber(number / 1000000000000000000UL) + " Trillionen";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 20U)))
+        else if (number < 100000000000000000000UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " Trillionen " + German.GetNumber(ulong.Parse(number.ToString().Substring(2)));
+            return German.GetNumber(number / 1000000000000000000UL) + " Trillionen " + German.GetNumber(number % 1000000000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 21U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 20U)) == 0UL)
+        else if (number < 1000000000000000000000UL && number % 100000000000000000000UL == 0UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " Trillionen";
+            return German.GetNumber(number / 1000000000000000000UL) + " Trillionen";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 21U)))
+        else if (number < 1000000000000000000000UL)
         {
-            return German.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " Trillionen " + German.GetNumber(ulong.Parse(number.ToString().Substring(3)));
-        }
+            return German.GetNumber(number / 1000000000000000000UL) + " Trillionen " + German.GetNumber(number % 1000000000000000000UL);
+        } //ulong.MaxValue = 18446744073709551615 -> "CS1021: Die integrale Konstante ist zu groß."*/
         return "";
         // Trilliarde; Quadrillion; Quadrilliarde; Quintillion; Quintilliarde; Sextillion; Sextilliarde; Septillion; Septilliarde; Oktillion; Oktilliarde; Nonillion; Nonilliarde;
         // Dezillion; Dezilliarde; Undezillion; Undezilliarde; Dodezillion; Dodezilliarde; Tredezillion; Tredezilliarde; Quattuordezillion; Quattuordezilliarde;
