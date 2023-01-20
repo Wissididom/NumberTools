@@ -11,13 +11,14 @@
         };
         for (int i = 0; i < numbersToTest.Length; i++)
         {
+            Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber((Api.Language) Enum.Parse(typeof(Api.Language), args[0]), numbersToTest[i]));
             //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.ROMAN, numbersToTest[i]));
             //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.GERMAN, numbersToTest[i]));
             //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.ENGLISH, numbersToTest[i]));
             //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.FRENCH, numbersToTest[i]));
             //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.SPANISH, numbersToTest[i]));
             //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.DUTCH, numbersToTest[i]));
-            Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.NORWEGIAN, numbersToTest[i]));
+            //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.NORWEGIAN, numbersToTest[i]));
             //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.JAPANESE, numbersToTest[i]));
             //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.ESPERANTO, numbersToTest[i]));
             //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.VAMPIRSCHWESTERN, numbersToTest[i]));

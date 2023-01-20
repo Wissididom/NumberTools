@@ -57,7 +57,7 @@ public class Dutch
         }
         else if (number < 20UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(1))).Replace("vier", "veer").Replace("drie", "der") + "tien";
+            return Dutch.GetNumber(number % 10UL).Replace("vier", "veer").Replace("drie", "der") + "tien";
         }
         else if (number == 20UL)
         {
@@ -93,119 +93,119 @@ public class Dutch
         }
         else if (number < 100UL)
         {
-            string numberStr = number.ToString();
+            ulong numberEnd = number % 10UL;
             string en = "en";
-            if (numberStr.EndsWith("2") || numberStr.EndsWith("3"))
+            if (numberEnd == 2UL || numberEnd == 3UL)
                 en = "ën";
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(1))).Replace("nul", "") + en + Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 1) + "0")).Replace("vier", "veer");
+            return Dutch.GetNumber(numberEnd).Replace("nul", "") + en + Dutch.GetNumber((number / 10UL) * 10UL).Replace("vier", "veer");
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 3U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 2U)) == 0UL)
+        else if (number < 1000UL && number % 100UL == 0UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))).Replace("een", "") + "honderd";
+            return Dutch.GetNumber(number / 100UL).Replace("een", "") + "honderd";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 3U)) && number % 10UL == 0UL)
+        else if (number < 1000UL && number % 10UL == 0UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))).Replace("een", "") + "honderd " + Dutch.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return Dutch.GetNumber(number / 100UL).Replace("een", "") + "honderd " + Dutch.GetNumber(number % 10UL).Replace("nul", "");
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 3U)))
+        else if (number < 1000UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))).Replace("een", "") + "honderd en " + Dutch.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return Dutch.GetNumber(number / 100UL).Replace("een", "") + "honderd en " + Dutch.GetNumber(number % 100UL).Replace("nul", "");
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 4U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 3U)) == 0UL)
+        else if (number < 10000UL && number % 1000UL == 0UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))).Replace("een", "") + "duizend";
+            return Dutch.GetNumber(number / 1000UL).Replace("een", "") + "duizend";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 4U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 2U)) == 0UL)
+        else if (number < 10000UL && number % 100UL == 0UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))).Replace("een", "") + "duizend " + Dutch.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return Dutch.GetNumber(number / 1000UL).Replace("een", "") + "duizend " + Dutch.GetNumber(number % 1000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 4U)))
+        else if (number < 10000UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))).Replace("een", "") + "duizend en " + Dutch.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return Dutch.GetNumber(number / 1000UL).Replace("een", "") + "duizend en " + Dutch.GetNumber(number % 1000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 5U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 3U)) == 0UL)
+        else if (number < 100000UL && number % 1000UL == 0UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))).Replace("een", "") + "duizend";
+            return Dutch.GetNumber(number / 1000UL).Replace("een", "") + "duizend";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 5U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 2U)) == 0UL)
+        else if (number < 100000UL && number % 100UL == 0UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))).Replace("een", "") + "duizend " + Dutch.GetNumber(ulong.Parse(number.ToString().Substring(2)));
+            return Dutch.GetNumber(number / 1000UL).Replace("een", "") + "duizend " + Dutch.GetNumber(number % 1000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 6U)))
+        else if (number < 100000UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))).Replace("een", "") + "duizend en " + Dutch.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return Dutch.GetNumber(number / 1000UL).Replace("een", "") + "duizend en " + Dutch.GetNumber(number % 1000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 6U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 2U)) == 0UL)
+        else if (number < 1000000UL && number % 100UL == 0UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))).Replace("een", "") + "duizend " + Dutch.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return Dutch.GetNumber(number / 1000UL).Replace("een", "") + "duizend " + Dutch.GetNumber(number % 1000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 6U)))
+        else if (number < 1000000UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))).Replace("een", "") + "duizend en " + Dutch.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return Dutch.GetNumber(number / 1000UL).Replace("een", "") + "duizend en " + Dutch.GetNumber(number % 1000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 7U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 6U)) == 0UL)
+        else if (number < 10000000UL && number % 1000000UL == 0UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " miljoen";
+            return Dutch.GetNumber(number / 1000000UL) + " miljoen";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 7U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 5U)) == 0UL)
+        else if (number < 10000000UL && number % 100000UL == 0UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " miljoen " + Dutch.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return Dutch.GetNumber(number / 1000000UL) + " miljoen " + Dutch.GetNumber(number % 1000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 7U)))
+        else if (number < 10000000UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " miljoen en " + Dutch.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return Dutch.GetNumber(number / 1000000UL) + " miljoen en " + Dutch.GetNumber(number % 1000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 8U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 6U)) == 0UL)
+        else if (number < 100000000UL && number % 1000000UL == 0UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " miljoen";
+            return Dutch.GetNumber(number / 1000000UL) + " miljoen";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 8U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 5U)) == 0UL)
+        else if (number < 100000000UL && number % 100000UL == 0UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " miljoen " + Dutch.GetNumber(ulong.Parse(number.ToString().Substring(2)));
+            return Dutch.GetNumber(number / 1000000UL) + " miljoen " + Dutch.GetNumber(number % 1000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 9U)))
+        else if (number < 1000000000UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " miljoen en " + Dutch.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return Dutch.GetNumber(number / 1000000UL) + " miljoen en " + Dutch.GetNumber(number %  1000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 9U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 5U)) == 0UL)
+        else if (number < 1000000000UL && number % 100000UL == 0UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " miljoen " + Dutch.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return Dutch.GetNumber(number / 1000000UL) + " miljoen " + Dutch.GetNumber(number % 1000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 9U)))
+        else if (number < 1000000000UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " miljoen en " + Dutch.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return Dutch.GetNumber(number / 1000000UL) + " miljoen en " + Dutch.GetNumber(number % 1000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 10U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 9U)) == 0UL)
+        else if (number < 10000000000UL && number % 1000000000UL == 0UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " miljard";
+            return Dutch.GetNumber(number / 1000000000UL) + " miljard";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 10U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 8U)) == 0UL)
+        else if (number < 10000000000UL && number % 100000000UL == 0UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " miljard " + Dutch.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return Dutch.GetNumber(number / 1000000000UL) + " miljard " + Dutch.GetNumber(number % 1000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 10U)))
+        else if (number < 10000000000UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " miljard en " + Dutch.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return Dutch.GetNumber(number / 1000000000UL) + " miljard en " + Dutch.GetNumber(number % 1000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 11U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 9U)) == 0UL)
+        else if (number < 100000000000UL && number % 1000000000UL == 0UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " miljard";
+            return Dutch.GetNumber(number / 1000000000UL) + " miljard";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 11U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 8U)) == 0UL)
+        else if (number < 100000000000UL && number % 100000000UL == 0UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " miljard " + Dutch.GetNumber(ulong.Parse(number.ToString().Substring(2)));
+            return Dutch.GetNumber(number / 1000000000UL) + " miljard " + Dutch.GetNumber(number % 1000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 12U)))
+        else if (number < 1000000000000UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " miljard en " + Dutch.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return Dutch.GetNumber(number / 1000000000UL) + " miljard en " + Dutch.GetNumber(number % 1000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 12U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 8U)) == 0UL)
+        else if (number < 1000000000000UL && number % 100000000UL == 0UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " miljard " + Dutch.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return Dutch.GetNumber(number / 1000000000UL) + " miljard " + Dutch.GetNumber(number % 1000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 12U)))
+        else if (number < 1000000000000UL)
         {
-            return Dutch.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " miljard en " + Dutch.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return Dutch.GetNumber(number / 1000000000UL) + " miljard en " + Dutch.GetNumber(number % 1000000000UL);
         }
         return "";
     }
