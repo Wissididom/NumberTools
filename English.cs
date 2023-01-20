@@ -69,7 +69,7 @@ public class English
         }
         else if (number < 20UL)
         {
-            return (English.GetNumber(ulong.Parse(number.ToString().Substring(1))) + "teen").Replace("tt", "t");
+            return (English.GetNumber(number % 10UL) + "teen").Replace("tt", "t");
         }
         else if (number == 20UL)
         {
@@ -77,7 +77,7 @@ public class English
         }
         else if (number < 30UL)
         {
-            return "Twenty-" + English.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "Twenty-" + English.GetNumber(number % 10UL);
         }
         else if (number == 30UL)
         {
@@ -85,7 +85,7 @@ public class English
         }
         else if (number < 40UL)
         {
-            return "Thirty-" + English.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "Thirty-" + English.GetNumber(number % 10UL);
         }
         else if (number == 40UL)
         {
@@ -93,7 +93,7 @@ public class English
         }
         else if (number < 50UL)
         {
-            return "Fourty-" + English.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "Fourty-" + English.GetNumber(number % 10UL);
         }
         else if (number == 50UL)
         {
@@ -101,7 +101,7 @@ public class English
         }
         else if (number < 60UL)
         {
-            return "Fifty-" + English.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "Fifty-" + English.GetNumber(number % 10UL);
         }
         else if (number == 60UL)
         {
@@ -109,7 +109,7 @@ public class English
         }
         else if (number < 70UL)
         {
-            return "Sixty-" + English.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "Sixty-" + English.GetNumber(number % 10UL);
         }
         else if (number == 70UL)
         {
@@ -117,7 +117,7 @@ public class English
         }
         else if (number < 80UL)
         {
-            return "Seventy-" + English.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "Seventy-" + English.GetNumber(number % 10UL);
         }
         else if (number == 80UL)
         {
@@ -125,167 +125,167 @@ public class English
         }
         else if (number < 90UL)
         {
-            return "Eighty-" + English.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "Eighty-" + English.GetNumber(number % 10UL);
         }
         else if (number == 90UL)
         {
             return "Ninety";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 2U)))
+        else if (number < 100UL)
         {
-            return "Ninety-" + English.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "Ninety-" + English.GetNumber(number % 10UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 3U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 2U)) == 0UL)
+        else if (number < 1000UL && number % 100UL == 0UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "-Hundred";
+            return English.GetNumber(number / 100UL) + "-Hundred";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 3U)))
+        else if (number < 1000UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "-Hundred-" + English.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return English.GetNumber(number / 100UL) + "-Hundred-" + English.GetNumber(number % 100UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 4U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 3U)) == 0UL)
+        else if (number < 10000UL && number % 1000UL == 0UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "-Thousand";
+            return English.GetNumber(number / 1000UL) + "-Thousand";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 4U)))
+        else if (number < 10000UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "-Thousand-" + English.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return English.GetNumber(number / 1000UL) + "-Thousand-" + English.GetNumber(number % 1000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 5U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 4U)) == 0UL)
+        else if (number < 100000UL && number % 10000UL == 0UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + "-Thousand";
+            return English.GetNumber(number / 1000UL) + "-Thousand";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 5U)))
+        else if (number < 100000UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + "-Thousand-" + English.GetNumber(ulong.Parse(number.ToString().Substring(2)));
+            return English.GetNumber(number / 1000UL) + "-Thousand-" + English.GetNumber(number % 1000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 6U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 5U)) == 0UL)
+        else if (number < 1000000UL && number % 100000UL == 0UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + "-Thousand";
+            return English.GetNumber(number / 1000UL) + "-Thousand";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 6U)))
+        else if (number < 1000000UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + "-Thousand-" + English.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return English.GetNumber(number / 1000UL) + "-Thousand-" + English.GetNumber(number % 1000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 7U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 6U)) == 0UL)
+        else if (number < 10000000UL && number % 1000000UL == 0UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "-Million";
+            return English.GetNumber(number / 1000000UL) + "-Million";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 7U)))
+        else if (number < 10000000UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "-Million-" + English.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return English.GetNumber(number / 1000000UL) + "-Million-" + English.GetNumber(number % 1000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 8U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 7U)) == 0UL)
+        else if (number < 100000000UL && number % 10000000UL == 0UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + "-Million";
+            return English.GetNumber(number / 1000000UL) + "-Million";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 8U)))
+        else if (number < 100000000UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + "-Million-" + English.GetNumber(ulong.Parse(number.ToString().Substring(2)));
+            return English.GetNumber(number / 1000000UL) + "-Million-" + English.GetNumber(number % 1000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 9U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 8U)) == 0UL)
+        else if (number < 1000000000UL && number % 100000000UL == 0UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + "-Million";
+            return English.GetNumber(number / 1000000UL) + "-Million";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 9U)))
+        else if (number < 1000000000UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + "-Million-" + English.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return English.GetNumber(number / 1000000UL) + "-Million-" + English.GetNumber(number % 1000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 10U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 9U)) == 0UL)
+        else if (number < 10000000000UL && number % 1000000000UL == 0UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "-Billion";
+            return English.GetNumber(number / 1000000000UL) + "-Billion";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 10U)))
+        else if (number < 10000000000UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "-Billion-" + English.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return English.GetNumber(number / 1000000000UL) + "-Billion-" + English.GetNumber(number % 1000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 11U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 10U)) == 0UL)
+        else if (number < 100000000000UL && number % 10000000000UL == 0UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + "-Billion";
+            return English.GetNumber(number / 1000000000UL) + "-Billion";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 11U)))
+        else if (number < 100000000000UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + "-Billion-" + English.GetNumber(ulong.Parse(number.ToString().Substring(2)));
+            return English.GetNumber(number / 1000000000UL) + "-Billion-" + English.GetNumber(number % 1000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 12U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 11U)) == 0UL)
+        else if (number < 1000000000000UL && number % 100000000000UL == 0UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + "-Billion";
+            return English.GetNumber(number / 1000000000UL) + "-Billion";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 12U)))
+        else if (number < 1000000000000UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + "-Billion-" + English.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return English.GetNumber(number / 1000000000UL) + "-Billion-" + English.GetNumber(number % 1000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 13U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 12U)) == 0UL)
+        else if (number < 10000000000000UL && number % 1000000000000UL == 0UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "-Trillion";
+            return English.GetNumber(number / 1000000000000UL) + "-Trillion";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 13U)))
+        else if (number < 10000000000000UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "-Trillion-" + English.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return English.GetNumber(number / 1000000000000UL) + "-Trillion-" + English.GetNumber(number % 1000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 14U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 13U)) == 0UL)
+        else if (number < 100000000000000UL && number % 10000000000000UL == 0UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + "-Trillion";
+            return English.GetNumber(number / 1000000000000UL) + "-Trillion";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 14U)))
+        else if (number < 100000000000000UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + "-Trillion-" + English.GetNumber(ulong.Parse(number.ToString().Substring(2)));
+            return English.GetNumber(number / 1000000000000UL) + "-Trillion-" + English.GetNumber(number % 1000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 15U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 14U)) == 0UL)
+        else if (number < 1000000000000000UL && number % 100000000000000UL == 0UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + "-Trillion";
+            return English.GetNumber(number / 1000000000000UL) + "-Trillion";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 15U)))
+        else if (number < 1000000000000000UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + "-Trillion-" + English.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return English.GetNumber(number / 1000000000000UL) + "-Trillion-" + English.GetNumber(number % 1000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 16U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 15U)) == 0UL)
+        else if (number < 10000000000000000UL && number % 1000000000000000UL == 0UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "-Quadrillion";
+            return English.GetNumber(number / 1000000000000000UL) + "-Quadrillion";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 16U)))
+        else if (number < 10000000000000000UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "-Quadrillion-" + English.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return English.GetNumber(number / 1000000000000000UL) + "-Quadrillion-" + English.GetNumber(number % 1000000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 17U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 16U)) == 0UL)
+        else if (number < 100000000000000000UL && number % 10000000000000000UL == 0UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + "-Quadrillion";
+            return English.GetNumber(number / 1000000000000000UL) + "-Quadrillion";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 17U)))
+        else if (number < 100000000000000000UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + "-Quadrillion-" + English.GetNumber(ulong.Parse(number.ToString().Substring(2)));
+            return English.GetNumber(number / 1000000000000000UL) + "-Quadrillion-" + English.GetNumber(number % 1000000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 18U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 17U)) == 0UL)
+        else if (number < 1000000000000000000UL && number % 100000000000000000UL == 0UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + "-Quadrillion";
+            return English.GetNumber(number / 1000000000000000UL) + "-Quadrillion";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 18U)))
+        else if (number < 1000000000000000000UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + "-Quadrillion-" + English.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return English.GetNumber(number / 1000000000000000UL) + "-Quadrillion-" + English.GetNumber(number % 1000000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 19U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 18U)) == 0UL)
+        else if (number < 10000000000000000000UL && number % 1000000000000000000UL == 0UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "-Quintillion";
+            return English.GetNumber(number / 1000000000000000000UL) + "-Quintillion";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 19U)))
+        else if (number < 10000000000000000000UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "-Quintillion-" + English.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return English.GetNumber(number / 1000000000000000000UL) + "-Quintillion-" + English.GetNumber(number % 1000000000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 20U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 19U)) == 0UL)
+        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 20U)) && number % 10000000000000000000UL == 0UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + "-Quintillion";
+            return English.GetNumber(number / 1000000000000000000UL) + "-Quintillion";
         }
         else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 20U)))
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + "-Quintillion-" + English.GetNumber(ulong.Parse(number.ToString().Substring(2)));
+            return English.GetNumber(number / 1000000000000000000UL) + "-Quintillion-" + English.GetNumber(number % 1000000000000000000UL);
         }
         else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 21U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 20U)) == 0UL)
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + "-Quintillion";
+            return English.GetNumber(number / 1000000000000000000UL) + "-Quintillion";
         }
         else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 21U)))
         {
-            return English.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + "-Quintillion-" + English.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return English.GetNumber(number / 1000000000000000000UL) + "-Quintillion-" + English.GetNumber(number % 1000000000000000000UL);
         }
         return "";
     }
