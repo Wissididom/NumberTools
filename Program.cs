@@ -9,21 +9,12 @@
             0x800000, 0x1000000, 0x2000000, 0x4000000, 0x8000000, 0x10000000, 0x20000000, 0x40000000, 0x80000000, 0x100000000, 0x200000000, 0x400000000,
             0x800000000, 0x1000000000, 0x2000000000, 0x4000000000, 0x8000000000, 0x10000000000
         };
+        if (args.Length > 1) {
+            numbersToTest = new ulong[] {ulong.Parse(args[1])};
+        }
         for (int i = 0; i < numbersToTest.Length; i++)
         {
             Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber((Api.Language) Enum.Parse(typeof(Api.Language), args[0]), numbersToTest[i]));
-            //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.ROMAN, numbersToTest[i]));
-            //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.GERMAN, numbersToTest[i]));
-            //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.ENGLISH, numbersToTest[i]));
-            //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.FRENCH, numbersToTest[i]));
-            //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.SPANISH, numbersToTest[i]));
-            //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.DUTCH, numbersToTest[i]));
-            //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.NORWEGIAN, numbersToTest[i]));
-            //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.JAPANESE, numbersToTest[i]));
-            //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.ESPERANTO, numbersToTest[i]));
-            //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.VAMPIRSCHWESTERN, numbersToTest[i]));
-            //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.BINARY, numbersToTest[i]));
-            //Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber(Api.Language.HEXADECIMAL, numbersToTest[i]));
         }
     }
 }
