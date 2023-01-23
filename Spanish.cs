@@ -58,19 +58,19 @@ public class Spanish {
         } else if (number == 90UL) {
             return "noventa";
         } else if (number < 100UL) {
-            return Spanish.GetNumber((ulong)Math.Floor((double) number / 10) * 10) + " y " + Spanish.GetNumber(number % 10UL);
+            return Spanish.GetNumber((number / 10UL) * 10) + " y " + Spanish.GetNumber(number % 10UL);
         } else if (number == 100UL) {
             return "cien";
         } else if (number < 200UL) {
             return "ciento " + Spanish.GetNumber(number % 100UL);
         } else if (number < 1000UL) {
-            return Spanish.GetNumber((ulong)Math.Floor((double) number / 100)) + " ciento " + Spanish.GetNumber(number % 100UL);
+            return Spanish.GetNumber(number / 100UL) + " ciento " + Spanish.GetNumber(number % 100UL);
         } else if (number == 1000UL) {
             return "mil";
         } else if (number < 2000UL) {
             return "mil " + Spanish.GetNumber(number % 100UL);
         } else if (number < 10000UL) {
-            return Spanish.GetNumber((ulong)Math.Floor((double) number / 1000)) + " mil " + Spanish.GetNumber(number % 1000UL);
+            return Spanish.GetNumber(number / 1000UL) + " mil " + Spanish.GetNumber(number % 1000UL);
         }
         return "";
     }
