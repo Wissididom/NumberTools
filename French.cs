@@ -59,44 +59,44 @@ public class French {
             return "Quatre-vingt-dix"; // or "Nonante" in Belgium and Switzerland
         } else if (number < 100UL) {
             string un = "un";
-            if (Math.Floor((double)number / 10) == 7)
+            if (Math.Floor((double)number / 10UL) == 7)
                 un = "onze";
             if (number % 10UL == 1UL)
-                return French.GetNumber((ulong)Math.Floor(((double)number / 10)) * 10) + " et " + un;
+                return French.GetNumber((number / 10UL) * 10UL) + " et " + un;
             else
-                return French.GetNumber((ulong)Math.Floor(((double)number / 10)) * 10) + "-" + French.GetNumber(number % 10UL).ToLower();
+                return French.GetNumber((number / 10UL) * 10UL) + "-" + French.GetNumber(number % 10UL).ToLower();
         } else if (number == 100UL) {
             return "Cent";
         } else if (number < 1000UL) {
             if (Math.Floor((double)number / 100) == 1)
                 return ("Cent " + French.GetNumber(number % 100UL).ToLower().Replace("zéro" , "")).Trim();
             else if (number % 100UL == 1UL)
-                return French.GetNumber((ulong)Math.Floor((double)number / 100)) + " cent un";
+                return French.GetNumber(number / 100UL) + " cent un";
             else
-                return French.GetNumber((ulong)Math.Floor((double)number / 100)) + " cents " + French.GetNumber(number % 100UL).ToLower().Replace("zéro", "");
+                return French.GetNumber(number / 100UL) + " cents " + French.GetNumber(number % 100UL).ToLower().Replace("zéro", "");
         } else if (number == 1000UL) {
             return "Mille";
         } else if (number < 1000000UL) {
-            if (Math.Floor((double)number / 1000) == 1)
+            if (Math.Floor((double)number / 1000UL) == 1)
                 return ("Mille " + French.GetNumber(number % 1000UL).ToLower().Replace("zéro" , "")).Trim();
             else if (number % 1000UL == 1UL)
-                return French.GetNumber((ulong)Math.Floor((double)number / 1000)) + " mille un";
+                return French.GetNumber(number / 1000UL) + " mille un";
             else
-                return French.GetNumber((ulong)Math.Floor((double)number / 1000)) + " mille " + French.GetNumber(number % 1000UL).ToLower().Replace("zéro", "");
+                return French.GetNumber(number / 1000UL) + " mille " + French.GetNumber(number % 1000UL).ToLower().Replace("zéro", "");
         } else if (number < 1000000000UL) {
             if (Math.Floor((double)number / 1000000) == 1)
                 return ("Un million " + French.GetNumber(number % 1000000UL).ToLower().Replace("zéro" , "")).Trim();
             else if (number % 1000000UL == 1UL)
-                return French.GetNumber((ulong)Math.Floor((double)number / 1000000)) + " million un";
+                return French.GetNumber(number / 1000000UL) + " million un";
             else
-                return French.GetNumber((ulong)Math.Floor((double)number / 1000000)) + " million " + French.GetNumber(number % 1000000UL).ToLower().Replace("zéro", "");
+                return French.GetNumber(number / 1000000UL) + " million " + French.GetNumber(number % 1000000UL).ToLower().Replace("zéro", "");
         } else if (number < 1000000000000UL) {
             if (Math.Floor((double)number / 1000000000) == 1)
                 return ("Un milliard " + French.GetNumber(number % 1000000000UL).ToLower().Replace("zéro" , "")).Trim();
             else if (number % 1000000000UL == 1UL)
-                return French.GetNumber((ulong)Math.Floor((double)number / 1000000000)) + " milliard un";
+                return French.GetNumber(number / 1000000000UL) + " milliard un";
             else
-                return French.GetNumber((ulong)Math.Floor((double)number / 1000000000)) + " milliard " + French.GetNumber(number % 1000000000UL).ToLower().Replace("zéro", "");
+                return French.GetNumber(number / 1000000000UL) + " milliard " + French.GetNumber(number % 1000000000UL).ToLower().Replace("zéro", "");
         }
         return "";
     }

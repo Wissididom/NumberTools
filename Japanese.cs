@@ -49,208 +49,208 @@ public class Japanese
         }
         else if (number < 20UL)
         {
-            return "十" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "十" + Japanese.GetNumber(number % 10UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 2)) && number % 10UL == 0UL)
+        else if (number < 100UL && number % 10UL == 0UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "十";
+            return Japanese.GetNumber(number / 10UL) + "十";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 2)))
+        else if (number < 100UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "十" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return Japanese.GetNumber(number / 10UL) + "十" + Japanese.GetNumber(number % 10UL);
         }
-        else if (number == ulong.Parse(Api.AppendMultiple("1", "0", 2)))
+        else if (number == 100UL)
         {
             return "百";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("2", "0", 2)))
+        else if (number < 200UL)
         {
-            return "百" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "百" + Japanese.GetNumber(number % 100UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 3)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 2)) == 0UL)
+        else if (number < 1000UL && number % 100UL == 0UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "百";
+            return Japanese.GetNumber(number / 100UL) + "百";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 3)))
+        else if (number < 1000UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "百" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return Japanese.GetNumber(number / 100UL) + "百" + Japanese.GetNumber(number % 100UL);
         }
-        else if (number == ulong.Parse(Api.AppendMultiple("1", "0", 3)))
+        else if (number == 1000UL)
         {
             return "千";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("2", "0", 3)))
+        else if (number < 2000UL)
         {
-            return "千" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "千" + Japanese.GetNumber(number % 1000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 4)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 3)) == 0UL)
+        else if (number < 10000UL && number % 1000UL == 0UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "千";
+            return Japanese.GetNumber(number / 1000UL) + "千";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 4)))
+        else if (number < 10000UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "千" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return Japanese.GetNumber(number / 1000UL) + "千" + Japanese.GetNumber(number % 1000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 5)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 4)) == 0UL)
+        else if (number < 100000UL && number % 10000UL == 0UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "万";
+            return Japanese.GetNumber(number / 10000UL) + "万";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 5)))
+        else if (number < 100000UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "万" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return Japanese.GetNumber(number / 10000UL) + "万" + Japanese.GetNumber(number % 10000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 6)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 5)) == 0UL)
+        else if (number < 1000000UL && number % 100000UL == 0UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + "万";
+            return Japanese.GetNumber(number / 10000UL) + "万";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 6)))
+        else if (number < 1000000UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + "万" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(2)));
+            return Japanese.GetNumber(number / 10000UL) + "万" + Japanese.GetNumber(number % 10000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 7)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 6)) == 0UL)
+        else if (number < 10000000UL && number % 1000000UL == 0UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + "万";
+            return Japanese.GetNumber(number / 10000UL) + "万";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 7)))
+        else if (number < 10000000UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + "万" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return Japanese.GetNumber(number / 10000UL) + "万" + Japanese.GetNumber(number % 10000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 8)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 7)) == 0UL)
+        else if (number < 100000000UL && number % 10000000UL == 0UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 4))) + "万";
+            return Japanese.GetNumber(number / 10000UL) + "万";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 8)))
+        else if (number < 100000000UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 4))) + "万" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(4)));
+            return Japanese.GetNumber(number / 10000UL) + "万" + Japanese.GetNumber(number % 10000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 9)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 8)) == 0UL)
+        else if (number < 1000000000UL && number % 100000000UL == 0UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "億";
+            return Japanese.GetNumber(number / 100000000UL) + "億";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 9)))
+        else if (number < 1000000000UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "億" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return Japanese.GetNumber(number / 100000000UL) + "億" + Japanese.GetNumber(number % 100000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 10)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 9)) == 0UL)
+        else if (number < 10000000000UL && number % 1000000000UL == 0UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + "億";
+            return Japanese.GetNumber(number / 100000000UL) + "億";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 10)))
+        else if (number < 10000000000UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + "億" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(2)));
+            return Japanese.GetNumber(number / 100000000UL) + "億" + Japanese.GetNumber(number % 100000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 11)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 10)) == 0UL)
+        else if (number < 100000000000UL && number % 10000000000UL == 0UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + "億";
+            return Japanese.GetNumber(number / 100000000UL) + "億";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 11)))
+        else if (number < 100000000000UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + "億" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return Japanese.GetNumber(number / 100000000UL) + "億" + Japanese.GetNumber(number % 100000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 12)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 11)) == 0UL)
+        else if (number < 1000000000000UL && number % 100000000000UL == 0UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 4))) + "億";
+            return Japanese.GetNumber(number / 100000000UL) + "億";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 12)))
+        else if (number < 1000000000000UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 4))) + "億" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(4)));
+            return Japanese.GetNumber(number / 100000000UL) + "億" + Japanese.GetNumber(number % 100000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 13)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 12)) == 0UL)
+        else if (number < 10000000000000UL && number % 1000000000000UL == 0UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "兆";
+            return Japanese.GetNumber(number / 1000000000000UL) + "兆";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 13)))
+        else if (number < 10000000000000UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "兆" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return Japanese.GetNumber(number / 1000000000000UL) + "兆" + Japanese.GetNumber(number % 1000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 14)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 13)) == 0UL)
+        else if (number < 100000000000000UL && number % 10000000000000UL == 0UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + "兆";
+            return Japanese.GetNumber(number / 1000000000000UL) + "兆";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 14)))
+        else if (number < 100000000000000UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + "兆" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(2)));
+            return Japanese.GetNumber(number / 1000000000000UL) + "兆" + Japanese.GetNumber(number % 1000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 15)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 14)) == 0UL)
+        else if (number < 1000000000000000UL && number % 100000000000000UL == 0UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + "兆";
+            return Japanese.GetNumber(number / 1000000000000UL) + "兆";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 15)))
+        else if (number < 1000000000000000UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + "兆" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return Japanese.GetNumber(number / 1000000000000UL) + "兆" + Japanese.GetNumber(number % 1000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 16)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 15)) == 0UL)
+        else if (number < 10000000000000000UL && number % 1000000000000000UL == 0UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 4))) + "兆";
+            return Japanese.GetNumber(number / 1000000000000UL) + "兆";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 16)))
+        else if (number < 10000000000000000UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 4))) + "兆" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(4)));
+            return Japanese.GetNumber(number / 1000000000000UL) + "兆" + Japanese.GetNumber(number % 1000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 17)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 16)) == 0UL)
+        else if (number < 100000000000000000UL && number % 10000000000000000UL == 0UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "京";
+            return Japanese.GetNumber(number / 10000000000000000UL) + "京";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 17)))
+        else if (number < 100000000000000000UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "京" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return Japanese.GetNumber(number / 100000000000000000UL) + "京" + Japanese.GetNumber(number % 100000000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 18)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 17)) == 0UL)
+        else if (number < 1000000000000000000UL && number % 100000000000000000UL == 0UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + "京";
+            return Japanese.GetNumber(number / 100000000000000000UL) + "京";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 18)))
+        else if (number < 1000000000000000000UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + "京" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(2)));
+            return Japanese.GetNumber(number / 100000000000000000UL) + "京" + Japanese.GetNumber(number % 100000000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 19)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 18)) == 0UL)
+        else if (number < 10000000000000000000UL && number % 1000000000000000000UL == 0UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + "京";
+            return Japanese.GetNumber(number / 100000000000000000UL) + "京";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 19)))
+        else if (number < 10000000000000000000UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + "京" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return Japanese.GetNumber(number / 100000000000000000UL) + "京" + Japanese.GetNumber(number % 100000000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 20)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 19)) == 0UL)
+        /*else if (number < 100000000000000000000UL && number % 10000000000000000000UL == 0UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 4))) + "京";
+            return Japanese.GetNumber(number / 100000000000000000UL) + "京";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 20)))
+        else if (number < 100000000000000000000UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 4))) + "京" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(4)));
+            return Japanese.GetNumber(number / 100000000000000000UL) + "京" + Japanese.GetNumber(number % 100000000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 21)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 20)) == 0UL)
+        else if (number < 1000000000000000000000UL && number % 100000000000000000000UL == 0UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "垓";
+            return Japanese.GetNumber(number / 1000000000000000000000UL) + "垓";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 21)))
+        else if (number < 1000000000000000000000UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "垓" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return Japanese.GetNumber(number / 1000000000000000000000UL) + "垓" + Japanese.GetNumber(number % 1000000000000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 22)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 21)) == 0UL)
+        else if (number < 10000000000000000000000UL && number % 1000000000000000000000UL == 0UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + "垓";
+            return Japanese.GetNumber(number / 1000000000000000000000UL) + "垓";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 22)))
+        else if (number < 10000000000000000000000UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + "垓" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(2)));
+            return Japanese.GetNumber(number / 1000000000000000000000UL) + "垓" + Japanese.GetNumber(number % 1000000000000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 23)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 22)) == 0UL)
+        else if (number < 100000000000000000000000UL && number % 10000000000000000000000UL == 0UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + "垓";
+            return Japanese.GetNumber(number / 1000000000000000000000UL) + "垓";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 23)))
+        else if (number < 100000000000000000000000UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + "垓" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return Japanese.GetNumber(number / 1000000000000000000000UL) + "垓" + Japanese.GetNumber(number % 1000000000000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 24)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 23)) == 0UL)
+        else if (number < 1000000000000000000000000UL && number % 100000000000000000000000UL == 0UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 4))) + "垓";
+            return Japanese.GetNumber(number / 1000000000000000000000UL) + "垓";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 24)))
+        else if (number < 1000000000000000000000000UL)
         {
-            return Japanese.GetNumber(ulong.Parse(number.ToString().Substring(0, 4))) + "垓" + Japanese.GetNumber(ulong.Parse(number.ToString().Substring(4)));
-        }
+            return Japanese.GetNumber(number / 1000000000000000000000UL) + "垓" + Japanese.GetNumber(number % 1000000000000000000000UL);
+        } //ulong.MaxValue = 18446744073709551615 -> "CS1021: Die integrale Konstante ist zu groß."*/
         return "";
         // 秭; 穣; 溝; 澗; 正; 載; 極; 恒河沙; 阿僧祇; 那由他; 不可思議; 無量大数
         // https://de.wikipedia.org/wiki/Japanisches_Zahlensystem

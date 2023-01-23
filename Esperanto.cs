@@ -47,186 +47,185 @@ public class Esperanto
         {
             return "dek";
         }
-        else if (number < ulong.Parse("20"))
+        else if (number < 20UL)
         {
-            return "dek " + Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "dek " + Esperanto.GetNumber(number % 10UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 2)) && number % 10UL == 0UL)
+        else if (number < 100UL && number % 10UL == 0UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "dek";
+            return Esperanto.GetNumber(number / 10UL) + "dek";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 2)))
+        else if (number < 100UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "dek " + Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return Esperanto.GetNumber(number / 10UL) + "dek " + Esperanto.GetNumber(number % 10UL);
         }
-        else if (number == ulong.Parse(Api.AppendMultiple("1", "0", 2)))
+        else if (number == 100UL)
         {
             return "cent";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("2", "0", 2)))
+        else if (number < 200UL)
         {
-            return "cent " + Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "cent " + Esperanto.GetNumber(number % 100UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 3)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 2)) == 0UL)
+        else if (number < 1000UL && number % 100UL == 0UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "cent";
+            return Esperanto.GetNumber(number / 100UL) + "cent";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 3)))
+        else if (number < 1000UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + "cent " + Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return Esperanto.GetNumber(number / 100UL) + "cent " + Esperanto.GetNumber(number % 100UL);
         }
-        else if (number == ulong.Parse(Api.AppendMultiple("1", "0", 3)))
+        else if (number == 1000UL)
         {
             return "mil";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("2", "0", 3)))
+        else if (number < 2000UL)
         {
-            return "mil " + Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "mil " + Esperanto.GetNumber(number % 1000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 4)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 3)) == 0UL)
+        else if (number < 10000UL && number % 1000UL == 0UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " mil";
+            return Esperanto.GetNumber(number / 1000UL) + " mil";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 4)))
+        else if (number < 10000UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " mil " + Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return Esperanto.GetNumber(number / 1000UL) + " mil " + Esperanto.GetNumber(number % 1000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 5)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 4)) == 0UL)
+        else if (number < 100000UL && number % 10000UL == 0UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " mil";
+            return Esperanto.GetNumber(number / 1000UL) + " mil";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 5)))
+        else if (number < 100000UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " mil " + Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(2)));
+            return Esperanto.GetNumber(number / 1000UL) + " mil " + Esperanto.GetNumber(number % 1000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 6)) && (number % ulong.Parse(Api.AppendMultiple("1", "0", 5))) == 0UL)
+        else if (number < 1000000UL && number % 100000UL == 0UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " mil";
+            return Esperanto.GetNumber(number / 1000UL) + " mil";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 6)))
+        else if (number < 1000000UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " mil " + Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return Esperanto.GetNumber(number / 1000UL) + " mil " + Esperanto.GetNumber(number % 1000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 7)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 6)) == 0UL)
+        else if (number < 10000000UL && number % 1000000UL == 0UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " miliono";
+            return Esperanto.GetNumber(number / 1000000UL) + " miliono";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 7)))
+        else if (number < 10000000UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " miliono " + Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return Esperanto.GetNumber(number / 1000000UL) + " miliono " + Esperanto.GetNumber(number % 1000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 8)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 7)) == 0UL)
+        else if (number < 100000000UL && number % 10000000UL == 0UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " miliono";
+            return Esperanto.GetNumber(number / 1000000UL) + " miliono";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 8)))
+        else if (number < 100000000UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " miliono " + Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(2)));
+            return Esperanto.GetNumber(number / 1000000UL) + " miliono " + Esperanto.GetNumber(number % 1000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 9)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 8)) == 0UL)
+        else if (number < 1000000000UL && number % 100000000UL == 0UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " miliono";
+            return Esperanto.GetNumber(number / 1000000UL) + " miliono";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 9)))
+        else if (number < 1000000000UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " miliono " + Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return Esperanto.GetNumber(number / 1000000UL) + " miliono " + Esperanto.GetNumber(number % 1000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 10)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 9)) == 0UL)
+        else if (number < 10000000000UL && number % 1000000000UL == 0UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " miliardo";
+            return Esperanto.GetNumber(number / 1000000000UL) + " miliardo";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 10)))
+        else if (number < 10000000000UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " miliardo " + Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return Esperanto.GetNumber(number / 1000000000UL) + " miliardo " + Esperanto.GetNumber(number % 1000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 11)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 10)) == 0UL)
+        else if (number < 100000000000UL && number % 10000000000UL == 0UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " miliardo";
+            return Esperanto.GetNumber(number / 1000000000UL) + " miliardo";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 11)))
+        else if (number < 100000000000UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " miliardo " + Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(2)));
+            return Esperanto.GetNumber(number / 1000000000UL) + " miliardo " + Esperanto.GetNumber(number % 1000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 12)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 11)) == 0UL)
+        else if (number < 1000000000000UL && number % 100000000000UL == 0UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " miliardo";
+            return Esperanto.GetNumber(number / 1000000000UL) + " miliardo";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 12)))
+        else if (number < 1000000000000UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " miliardo " + Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return Esperanto.GetNumber(number / 1000000000UL) + " miliardo " + Esperanto.GetNumber(number % 1000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 13)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 12)) == 0UL)
+        else if (number < 10000000000000UL && number % 1000000000000UL == 0UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " biliono";
+            return Esperanto.GetNumber(number / 1000000000000UL) + " biliono";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 13)))
+        else if (number < 10000000000000UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " biliono " + Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return Esperanto.GetNumber(number / 1000000000000UL) + " biliono " + Esperanto.GetNumber(number % 1000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 14)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 13)) == 0UL)
+        else if (number < 100000000000000UL && number % 10000000000000UL == 0UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " biliono";
+            return Esperanto.GetNumber(number / 1000000000000UL) + " biliono";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 14)))
+        else if (number < 100000000000000UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " biliono " + Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(2)));
+            return Esperanto.GetNumber(number / 1000000000000UL) + " biliono " + Esperanto.GetNumber(number % 1000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 15)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 14)) == 0UL)
+        else if (number < 1000000000000000UL && number % 100000000000000UL == 0UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " biliono";
+            return Esperanto.GetNumber(number / 1000000000000UL) + " biliono";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 15)))
+        else if (number < 1000000000000000UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " biliono " + Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return Esperanto.GetNumber(number / 1000000000000UL) + " biliono " + Esperanto.GetNumber(number % 1000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 16)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 15)) == 0UL)
+        else if (number < 10000000000000000UL && number % 1000000000000000UL == 0UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " biliardo";
+            return Esperanto.GetNumber(number / 1000000000000000UL) + " biliardo";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 16)))
+        else if (number < 10000000000000000UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " biliardo " + Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return Esperanto.GetNumber(number / 1000000000000000UL) + " biliardo " + Esperanto.GetNumber(number % 1000000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 17)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 16)) == 0UL)
+        else if (number < 100000000000000000UL && number % 10000000000000000UL == 0UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " biliardo";
+            return Esperanto.GetNumber(number / 1000000000000000UL) + " biliardo";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 17)))
+        else if (number < 100000000000000000UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " biliardo " + Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(2)));
+            return Esperanto.GetNumber(number / 1000000000000000UL) + " biliardo " + Esperanto.GetNumber(number % 1000000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 18)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 17)) == 0UL)
+        else if (number < 1000000000000000000UL && number % 100000000000000000UL == 0UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " biliardo";
+            return Esperanto.GetNumber(number / 1000000000000000UL) + " biliardo";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 18)))
+        else if (number < 1000000000000000000UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " biliardo " + Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(3)));
+            return Esperanto.GetNumber(number / 1000000000000000UL) + " biliardo " + Esperanto.GetNumber(number % 1000000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 19)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 18)) == 0UL)
+        else if (number < 10000000000000000000UL && number % 1000000000000000000UL == 0UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " triliono";
+            return Esperanto.GetNumber(number / 1000000000000000000UL) + " triliono";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 19)))
+        else if (number < 10000000000000000000UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 1))) + " triliono " + Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return Esperanto.GetNumber(number / 1000000000000000000UL) + " triliono " + Esperanto.GetNumber(number % 1000000000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 20)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 19)) == 0UL)
+        /*else if (number < 100000000000000000000UL && number % 10000000000000000000UL == 0UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " triliono";
+            return Esperanto.GetNumber(number / 1000000000000000000UL) + " triliono";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 20)))
+        else if (number < 100000000000000000000UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 2))) + " triliono " + Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(2)));
+            return Esperanto.GetNumber(number / 1000000000000000000UL) + " triliono " + Esperanto.GetNumber(number % 1000000000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 21)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 20)) == 0UL)
+        else if (number < 1000000000000000000000UL && number % 100000000000000000000UL == 0UL)
         {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " triliono";
+            return Esperanto.GetNumber(number / 1000000000000000000UL) + " triliono";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 21)))
-        {
-            return Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(0, 3))) + " triliono " + Esperanto.GetNumber(ulong.Parse(number.ToString().Substring(3)));
-        }
+        else if (number < 1000000000000000000000UL)
+            return Esperanto.GetNumber(number / 1000000000000000000UL) + " triliono " + Esperanto.GetNumber(number % 1000000000000000000UL);
+        } //ulong.MaxValue = 18446744073709551615 -> "CS1021: Die integrale Konstante ist zu groß."*/
         return "";
     }
 }
