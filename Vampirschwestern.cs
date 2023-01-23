@@ -49,7 +49,7 @@ public class Vampirschwestern
         }
         else if (number < 20UL)
         {
-            return "dong-" + Vampirschwestern.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "dong-" + Vampirschwestern.GetNumber(number % 10UL);
         }
         else if (number == 20UL)
         {
@@ -57,7 +57,7 @@ public class Vampirschwestern
         }
         else if (number < 30UL)
         {
-            return "zoing-" + Vampirschwestern.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "zoing-" + Vampirschwestern.GetNumber(number % 10UL);
         }
         else if (number == 30UL)
         {
@@ -65,7 +65,7 @@ public class Vampirschwestern
         }
         else if (number < 40UL)
         {
-            return "trogda-" + Vampirschwestern.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "trogda-" + Vampirschwestern.GetNumber(number % 10UL);
         }
         else if (number == 40UL)
         {
@@ -73,7 +73,7 @@ public class Vampirschwestern
         }
         else if (number < 50UL)
         {
-            return "zirick-" + Vampirschwestern.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "zirick-" + Vampirschwestern.GetNumber(number % 10UL);
         }
         else if (number == 50UL)
         {
@@ -81,7 +81,7 @@ public class Vampirschwestern
         }
         else if (number < 60UL)
         {
-            return "fomsiat-" + Vampirschwestern.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "fomsiat-" + Vampirschwestern.GetNumber(number % 10UL);
         }
         else if (number == 60UL)
         {
@@ -89,7 +89,7 @@ public class Vampirschwestern
         }
         else if (number < 70UL)
         {
-            return "shoszik-" + Vampirschwestern.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "shoszik-" + Vampirschwestern.GetNumber(number % 10UL);
         }
         else if (number == 70UL)
         {
@@ -97,7 +97,7 @@ public class Vampirschwestern
         }
         else if (number < 80UL)
         {
-            return "sytenta-" + Vampirschwestern.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "sytenta-" + Vampirschwestern.GetNumber(number % 10UL);
         }
         else if (number == 80UL)
         {
@@ -105,7 +105,7 @@ public class Vampirschwestern
         }
         else if (number < 90UL)
         {
-            return "omsiat-" + Vampirschwestern.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "omsiat-" + Vampirschwestern.GetNumber(number % 10UL);
         }
         else if (number == 90UL)
         {
@@ -113,7 +113,7 @@ public class Vampirschwestern
         }
         else if (number < 100UL)
         {
-            return "noncenta-" + Vampirschwestern.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "noncenta-" + Vampirschwestern.GetNumber(number % 10UL);
         }
         else if (number == 100UL)
         {
@@ -121,7 +121,7 @@ public class Vampirschwestern
         }
         else if (number < 200UL)
         {
-            return "bong-" + Vampirschwestern.GetNumber(ulong.Parse(number.ToString().Substring(1)));
+            return "bong-" + Vampirschwestern.GetNumber(number % 100UL);
         }
         return "";
     }
