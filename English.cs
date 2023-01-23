@@ -271,22 +271,22 @@ public class English
         {
             return English.GetNumber(number / 1000000000000000000UL) + "-Quintillion-" + English.GetNumber(number % 1000000000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 20U)) && number % 10000000000000000000UL == 0UL)
+        /*else if (number < 100000000000000000000UL && number % 10000000000000000000UL == 0UL)
         {
             return English.GetNumber(number / 1000000000000000000UL) + "-Quintillion";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 20U)))
+        else if (number < 100000000000000000000UL)
         {
             return English.GetNumber(number / 1000000000000000000UL) + "-Quintillion-" + English.GetNumber(number % 1000000000000000000UL);
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 21U)) && number % ulong.Parse(Api.AppendMultiple("1", "0", 20U)) == 0UL)
+        else if (number < 1000000000000000000000UL && number % 100000000000000000000UL == 0UL)
         {
             return English.GetNumber(number / 1000000000000000000UL) + "-Quintillion";
         }
-        else if (number < ulong.Parse(Api.AppendMultiple("1", "0", 21U)))
+        else if (number < 1000000000000000000000UL)
         {
             return English.GetNumber(number / 1000000000000000000UL) + "-Quintillion-" + English.GetNumber(number % 1000000000000000000UL);
-        }
+        } //ulong.MaxValue = 18446744073709551615 -> "CS1021: Die integrale Konstante ist zu groß."*/
         return "";
     }
 }

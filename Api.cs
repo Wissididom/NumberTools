@@ -108,14 +108,4 @@ public class Api
     {
         return Hexadecimal.GetNumber(number);
     }
-
-    public static string AppendMultiple(string str, string toAppend, uint count)
-    {
-        string result = str;
-        for (int i = 0; i < count; i++)
-        {
-            result += toAppend;
-        }
-        return result;
-    }
 }
