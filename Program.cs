@@ -14,7 +14,7 @@
         }
         for (int i = 0; i < numbersToTest.Length; i++)
         {
-            Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber((Api.Language) Enum.Parse(typeof(Api.Language), args[0]), numbersToTest[i]));
+            Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber((Api.Language) Enum.Parse(typeof(Api.Language), args[0].ToUpper()), numbersToTest[i]));
         }
     }
 }
