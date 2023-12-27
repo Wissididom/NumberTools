@@ -1,3 +1,5 @@
+using System.Text;
+
 public class Binary
 {
 
@@ -5,13 +7,12 @@ public class Binary
     {
         if (number == 0UL)
             return "0";
-        string x = "";
+        StringBuilder binaryRepresentation = new StringBuilder();
         while (number > 0UL)
         {
-            ulong a = number % 2UL;
-            x = a.ToString() + x;
+            binaryRepresentation.Insert(0, (number % 2UL).ToString());
             number /= 2UL;
         }
-        return x;
+        return binaryRepresentation.ToString();
     }
 }

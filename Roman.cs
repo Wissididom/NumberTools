@@ -1,56 +1,35 @@
+using System.Text;
+
 public class Roman
 {
 
     public static string GetNumber(ulong number)
     {
-        string result = "";
-        ulong m = number / 1000UL;
-        for (ulong a = 0UL; a < m; a++)
+        StringBuilder result = new StringBuilder();
+        result.Append('M', (int)(number / 1000));
+        number %= 1000;
+        AppendRoman(ref result, "CM", ref number, 900);
+        AppendRoman(ref result, "D", ref number, 500);
+        AppendRoman(ref result, "CD", ref number, 400);
+        AppendRoman(ref result, "C", ref number, 100);
+        AppendRoman(ref result, "XC", ref number, 90);
+        AppendRoman(ref result, "L", ref number, 50);
+        AppendRoman(ref result, "XL", ref number, 40);
+        AppendRoman(ref result, "X", ref number, 10);
+        AppendRoman(ref result, "IX", ref number, 9);
+        AppendRoman(ref result, "V", ref number, 5);
+        AppendRoman(ref result, "IV", ref number, 4);
+        AppendRoman(ref result, "I", ref number, 1);
+        return result.ToString();
+    }
+
+    private static void AppendRoman(ref StringBuilder result, string roman, ref ulong number, ulong value)
+    {
+        int count = (int)(number / value);
+        if (count > 0)
         {
-            result += "M";
+            result.Append(roman);
+            number %= value;
         }
-        number -= m * 1000UL;
-        ulong d = number / 500UL;
-        for (ulong a = 0UL; a < d; a++)
-        {
-            result += "D";
-        }
-        number -= d * 500UL;
-        ulong c = number / 100UL;
-        for (ulong a = 0UL; a < c; a++)
-        {
-            result += "C";
-        }
-        number -= c * 100UL;
-        ulong l = number / 50UL;
-        for (ulong a = 0UL; a < l; a++)
-        {
-            result += "L";
-        }
-        number -= l * 50UL;
-        ulong x = number / 10UL;
-        for (ulong a = 0UL; a < x; a++)
-        {
-            result += "X";
-        }
-        number -= x * 10UL;
-        ulong v = number / 5UL;
-        for (ulong a = 0UL; a < v; a++)
-        {
-            result += "V";
-        }
-        number -= v * 5UL;
-        ulong i = number / 1UL;
-        for (ulong a = 0UL; a < i; a++)
-        {
-            result += "I";
-        }
-        result = result.Replace("VIIII", "IX"); // 9
-        result = result.Replace("IIII", "IV"); // 4
-        result = result.Replace("LXXXX", "XC"); // 90
-        result = result.Replace("XXXX", "XL"); // 40
-        result = result.Replace("DCCCC", "CM"); // 900
-        result = result.Replace("CCCC", "CD"); // 400
-        return result;
     }
 }
