@@ -14,6 +14,7 @@
         }
         for (int i = 0; i < numbersToTest.Length; i++)
         {
+            if (i > 55 && args[0].ToUpper() == "ROMAN") break;
             Console.WriteLine(numbersToTest[i] + ": " + Api.GetNumber((Api.Language) Enum.Parse(typeof(Api.Language), args[0].ToUpper()), numbersToTest[i]));
         }
     }

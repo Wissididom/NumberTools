@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build
+        timeout-minutes: 30
+        run: |
+          dotnet build
+      - name: Run Binary
+        timeout-minutes: 30
+        run: |
+          ./bin/Debug/net8.0/NumberTools binary
+      - name: Run Dutch
+        timeout-minutes: 30
+        run: |
+          ./bin/Debug/net8.0/NumberTools dutch
+      - name: Run English
+        timeout-minutes: 30
+        run: |
+          ./bin/Debug/net8.0/NumberTools english
+      - name: Run Esperanto
+        timeout-minutes: 30
+        run: |
+          ./bin/Debug/net8.0/NumberTools esperanto
+      - name: Run French
+        timeout-minutes: 30
+        run: |
+          ./bin/Debug/net8.0/NumberTools french
+      - name: Run German
+        timeout-minutes: 30
+        run: |
+          ./bin/Debug/net8.0/NumberTools german
+      - name: Run Hexadecimal
+        timeout-minutes: 30
+        run: |
+          ./bin/Debug/net8.0/NumberTools hexadecimal
+      - name: Run Japanese
+        timeout-minutes: 30
+        run: |
+          ./bin/Debug/net8.0/NumberTools japanese
+      - name: Run Norwegian
+        timeout-minutes: 30
+        run: |
+          ./bin/Debug/net8.0/NumberTools norwegian
+      - name: Run Roman
+        timeout-minutes: 30
+        run: |
+          ./bin/Debug/net8.0/NumberTools roman
+      - name: Run Spanish
+        timeout-minutes: 30
+        run: |
+          ./bin/Debug/net8.0/NumberTools spanish
+      - name: Run Vampirschwestern
+        timeout-minutes: 30
+        run: |
+          ./bin/Debug/net8.0/NumberTools vampirschwestern
