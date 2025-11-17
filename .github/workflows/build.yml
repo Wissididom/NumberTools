@@ -1,71 +1,118 @@
-name: CI
+name: Build
+permissions:
+  "contents": "write"
 
 on:
   push:
-    branches: [master, main]
+    branches:
+      - main
   pull_request:
-    branches: [master, main]
+  workflow_dispatch:
 
 concurrency:
   group: build-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
-    name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Build
+      - uses: actions/checkout@v5
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Test
+        run: dotnet test --verbosity normal
+      - name: Build Release
         timeout-minutes: 30
-        run: |
-          dotnet build
+        run: dotnet build -c Release --no-restore
       - name: Run Binary
         timeout-minutes: 30
-        run: |
-          ./bin/Debug/net8.0/NumberTools binary
+        run: ./bin/Release/net10.0/NumberTools binary
       - name: Run Dutch
         timeout-minutes: 30
-        run: |
-          ./bin/Debug/net8.0/NumberTools dutch
+        run: ./bin/Release/net10.0/NumberTools dutch
       - name: Run English
         timeout-minutes: 30
-        run: |
-          ./bin/Debug/net8.0/NumberTools english
+        run: ./bin/Release/net10.0/NumberTools english
       - name: Run Esperanto
         timeout-minutes: 30
-        run: |
-          ./bin/Debug/net8.0/NumberTools esperanto
+        run: ./bin/Release/net10.0/NumberTools esperanto
       - name: Run French
         timeout-minutes: 30
-        run: |
-          ./bin/Debug/net8.0/NumberTools french
+        run: ./bin/Release/net10.0/NumberTools french
       - name: Run German
         timeout-minutes: 30
-        run: |
-          ./bin/Debug/net8.0/NumberTools german
+        run: ./bin/Release/net10.0/NumberTools german
       - name: Run Hexadecimal
         timeout-minutes: 30
-        run: |
-          ./bin/Debug/net8.0/NumberTools hexadecimal
+        run: ./bin/Release/net10.0/NumberTools hexadecimal
       - name: Run Japanese
         timeout-minutes: 30
-        run: |
-          ./bin/Debug/net8.0/NumberTools japanese
+        run: ./bin/Release/net10.0/NumberTools japanese
       - name: Run Norwegian
         timeout-minutes: 30
-        run: |
-          ./bin/Debug/net8.0/NumberTools norwegian
+        run: ./bin/Release/net10.0/NumberTools norwegian
       - name: Run Roman
         timeout-minutes: 30
-        run: |
-          ./bin/Debug/net8.0/NumberTools roman
+        run: ./bin/Release/net10.0/NumberTools roman
       - name: Run Spanish
         timeout-minutes: 30
-        run: |
-          ./bin/Debug/net8.0/NumberTools spanish
+        run: ./bin/Release/net10.0/NumberTools spanish
       - name: Run Vampirschwestern
         timeout-minutes: 30
+        run: ./bin/Release/net10.0/NumberTools vampirschwestern
+      - name: Publish
         run: |
-          ./bin/Debug/net8.0/NumberTools vampirschwestern
+          ./build-linux.sh
+          ./build-windows.sh
+          ./build-macos.sh
+          mkdir release-artifacts
+      - name: Compress
+        run: |
+          zip -rj release-artifacts/NumberTools-linux-x64.zip bin/Release/net10.0/linux-x64/publish/*
+          zip -rj release-artifacts/NumberTools-linux-musl-x64.zip bin/Release/net10.0/linux-musl-x64/publish/*
+          zip -rj release-artifacts/NumberTools-linux-musl-arm64.zip bin/Release/net10.0/linux-musl-arm64/publish/*
+          zip -rj release-artifacts/NumberTools-linux-arm.zip bin/Release/net10.0/linux-arm/publish/*
+          zip -rj release-artifacts/NumberTools-linux-arm64.zip bin/Release/net10.0/linux-arm64/publish/*
+          zip -rj release-artifacts/NumberTools-win-x64.zip bin/Release/net10.0/win-x64/publish/*
+          zip -rj release-artifacts/NumberTools-win-x86.zip bin/Release/net10.0/win-x86/publish/*
+          zip -rj release-artifacts/NumberTools-win-arm64.zip bin/Release/net10.0/win-arm64/publish/*
+          zip -rj release-artifacts/NumberTools-macos-x64.zip bin/Release/net10.0/osx-x64/publish/*
+          zip -rj release-artifacts/NumberTools-macos-arm64.zip bin/Release/net10.0/osx-arm64/publish/*
+      - name: Upload artifact
+        uses: actions/upload-artifact@v5
+        with:
+          name: NumberTools
+          path: release-artifacts
+  create-release:
+    needs: [build]
+    runs-on: ubuntu-latest
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0 # allows for tags access
+      - name: Download artifact
+        uses: actions/download-artifact@v6
+        with:
+          name: NumberTools
+          path: release-artifacts/
+      - name: Create release
+        uses: ncipollo/release-action@v1.20.0
+        with:
+          replacesArtifacts: true
+          allowUpdates: true
+          artifactErrorsFailBuild: true
+          artifacts: "release-artifacts/*"
+          body: ${{ github.event.head_commit.message }}
+          prerelease: true
+          name: Nightly Release
+          tag: nightly-build
+      - name: Update nightly-build tag
+        run: |
+          git tag -f nightly-build
+          git push -f origin nightly-build
