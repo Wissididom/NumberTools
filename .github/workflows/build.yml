@@ -70,6 +70,7 @@ jobs:
           ./build-linux.sh
           ./build-windows.sh
           ./build-macos.sh
+          mkdir release-artifacts
       - name: Compress
         run: |
           zip -rj release-artifacts/NumberTools-linux-x64.zip bin/Release/net10.0/linux-x64/publish/*
