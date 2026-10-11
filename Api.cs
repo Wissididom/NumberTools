@@ -14,7 +14,8 @@ public class Api
         ESPERANTO,
         VAMPIRSCHWESTERN,
         BINARY,
-        HEXADECIMAL
+        HEXADECIMAL,
+        DANISH
     }
 
     public static string GetNumber(Language language, ulong number)
@@ -45,6 +46,8 @@ public class Api
                 return Api.GetBinaryNumber(number);
             case Language.HEXADECIMAL:
                 return Api.GetHexNumber(number);
+            case Language.DANISH:
+                return Api.GetDanishNumber(number);
             default:
                 return number.ToString();
         }
@@ -107,5 +110,10 @@ public class Api
     public static string GetHexNumber(ulong number)
     {
         return Hexadecimal.GetNumber(number);
+    }
+    
+    public static string GetDanishNumber(ulong number)
+    {
+        return Danish.GetNumber(number);
     }
 }

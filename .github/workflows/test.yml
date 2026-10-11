@@ -30,6 +30,9 @@ jobs:
       - name: Run Binary
         timeout-minutes: 30
         run: dotnet run binary
+      - name: Run Danish
+        timeout-minutes: 30
+        run: dotnet run danish
       - name: Run Dutch
         timeout-minutes: 30
         run: dotnet run dutch
