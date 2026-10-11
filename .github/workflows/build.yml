@@ -36,7 +36,12 @@ jobs:
         run: |
           dotnet publish -c Release -o bin/Release/net10.0/publish --no-restore
           mkdir release-artifacts
-      - name: Compress
+      - name: Compress (Windows)
+        if: startsWith(matrix.os, 'windows-')
+        run: |
+          Compress-Archive -Path bin/Release/net10.0/publish/* -DestinationPath release-artifacts/NumberTools-${{ matrix.os }}.zip
+      - name: Compress (Unix)
+        if: !startsWith(matrix.os, 'windows-')
         run: |
           zip -r release-artifacts/NumberTools-${{ matrix.os }}.zip bin/Release/net10.0/publish/*
       - name: Upload artifact
