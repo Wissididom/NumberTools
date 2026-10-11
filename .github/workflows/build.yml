@@ -58,7 +58,7 @@ jobs:
         with:
           fetch-depth: 0 # allows for tags access
       - name: Download artifact
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v8
         with:
           path: release-artifacts/
           merge-multiple: true
