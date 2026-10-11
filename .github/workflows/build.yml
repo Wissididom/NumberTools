@@ -38,7 +38,7 @@ jobs:
           mkdir release-artifacts
       - name: Compress
         run: |
-          zip -rj release-artifacts/NumberTools-${{ matrix.os }}.zip bin/Release/net10.0/publish/*
+          zip -r release-artifacts/NumberTools-${{ matrix.os }}.zip bin/Release/net10.0/publish/*
       - name: Upload artifact
         uses: actions/upload-artifact@v5
         with:
