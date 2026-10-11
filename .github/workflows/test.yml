@@ -63,6 +63,9 @@ jobs:
       - name: Run Spanish
         timeout-minutes: 30
         run: dotnet run spanish
+      - name: Run Swedish
+        timeout-minutes: 30
+        run: dotnet run swedish
       - name: Run Vampirschwestern
         timeout-minutes: 30
         run: dotnet run vampirschwestern
