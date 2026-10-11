@@ -47,7 +47,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v5
         with:
-          name: NumberTools
+          name: NumberTools-${{ matrix.os }}
           path: release-artifacts
   create-release:
     needs: [build]
@@ -60,8 +60,8 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v6
         with:
-          name: NumberTools
           path: release-artifacts/
+          merge-multiple: true
       - name: Create release
         uses: ncipollo/release-action@v1.20.0
         with:
