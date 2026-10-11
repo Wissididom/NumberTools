@@ -1,0 +1,65 @@
+name: Test
+
+permissions:
+  "contents": "read"
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: test-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Test
+        run: dotnet test --verbosity normal
+      - name: Run Binary
+        timeout-minutes: 30
+        run: dotnet run binary
+      - name: Run Dutch
+        timeout-minutes: 30
+        run: dotnet run dutch
+      - name: Run English
+        timeout-minutes: 30
+        run: dotnet run english
+      - name: Run Esperanto
+        timeout-minutes: 30
+        run: dotnet run esperanto
+      - name: Run French
+        timeout-minutes: 30
+        run: dotnet run french
+      - name: Run German
+        timeout-minutes: 30
+        run: dotnet run german
+      - name: Run Hexadecimal
+        timeout-minutes: 30
+        run: dotnet run hexadecimal
+      - name: Run Japanese
+        timeout-minutes: 30
+        run: dotnet run japanese
+      - name: Run Norwegian
+        timeout-minutes: 30
+        run: dotnet run norwegian
+      - name: Run Roman
+        timeout-minutes: 30
+        run: dotnet run roman
+      - name: Run Spanish
+        timeout-minutes: 30
+        run: dotnet run spanish
+      - name: Run Vampirschwestern
+        timeout-minutes: 30
+        run: dotnet run vampirschwestern

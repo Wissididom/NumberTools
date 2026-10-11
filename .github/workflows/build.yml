@@ -1,4 +1,5 @@
 name: Build
+
 permissions:
   "contents": "write"
 
@@ -15,7 +16,11 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    name: "Build ${{ matrix.os }}"
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: ["windows-latest", "macos-latest", "ubuntu-latest"]
     steps:
       - uses: actions/checkout@v5
       - name: Setup .NET 10
@@ -24,69 +29,25 @@ jobs:
           dotnet-version: '10.0.x'
       - name: Install dependencies
         run: dotnet restore
-      - name: Test
-        run: dotnet test --verbosity normal
       - name: Build Release
         timeout-minutes: 30
         run: dotnet build -c Release --no-restore
-      - name: Run Binary
-        timeout-minutes: 30
-        run: ./bin/Release/net10.0/NumberTools binary
-      - name: Run Dutch
-        timeout-minutes: 30
-        run: ./bin/Release/net10.0/NumberTools dutch
-      - name: Run English
-        timeout-minutes: 30
-        run: ./bin/Release/net10.0/NumberTools english
-      - name: Run Esperanto
-        timeout-minutes: 30
-        run: ./bin/Release/net10.0/NumberTools esperanto
-      - name: Run French
-        timeout-minutes: 30
-        run: ./bin/Release/net10.0/NumberTools french
-      - name: Run German
-        timeout-minutes: 30
-        run: ./bin/Release/net10.0/NumberTools german
-      - name: Run Hexadecimal
-        timeout-minutes: 30
-        run: ./bin/Release/net10.0/NumberTools hexadecimal
-      - name: Run Japanese
-        timeout-minutes: 30
-        run: ./bin/Release/net10.0/NumberTools japanese
-      - name: Run Norwegian
-        timeout-minutes: 30
-        run: ./bin/Release/net10.0/NumberTools norwegian
-      - name: Run Roman
-        timeout-minutes: 30
-        run: ./bin/Release/net10.0/NumberTools roman
-      - name: Run Spanish
-        timeout-minutes: 30
-        run: ./bin/Release/net10.0/NumberTools spanish
-      - name: Run Vampirschwestern
-        timeout-minutes: 30
-        run: ./bin/Release/net10.0/NumberTools vampirschwestern
       - name: Publish
         run: |
-          ./build-linux.sh
-          ./build-windows.sh
-          ./build-macos.sh
+          dotnet publish -c Release -o bin/Release/net10.0/publish --no-restore
           mkdir release-artifacts
-      - name: Compress
+      - name: Compress (Windows)
+        if: startsWith(matrix.os, 'windows-')
         run: |
-          zip -rj release-artifacts/NumberTools-linux-x64.zip bin/Release/net10.0/linux-x64/publish/*
-          zip -rj release-artifacts/NumberTools-linux-musl-x64.zip bin/Release/net10.0/linux-musl-x64/publish/*
-          zip -rj release-artifacts/NumberTools-linux-musl-arm64.zip bin/Release/net10.0/linux-musl-arm64/publish/*
-          zip -rj release-artifacts/NumberTools-linux-arm.zip bin/Release/net10.0/linux-arm/publish/*
-          zip -rj release-artifacts/NumberTools-linux-arm64.zip bin/Release/net10.0/linux-arm64/publish/*
-          zip -rj release-artifacts/NumberTools-win-x64.zip bin/Release/net10.0/win-x64/publish/*
-          zip -rj release-artifacts/NumberTools-win-x86.zip bin/Release/net10.0/win-x86/publish/*
-          zip -rj release-artifacts/NumberTools-win-arm64.zip bin/Release/net10.0/win-arm64/publish/*
-          zip -rj release-artifacts/NumberTools-macos-x64.zip bin/Release/net10.0/osx-x64/publish/*
-          zip -rj release-artifacts/NumberTools-macos-arm64.zip bin/Release/net10.0/osx-arm64/publish/*
+          Compress-Archive -Path bin/Release/net10.0/publish/* -DestinationPath release-artifacts/NumberTools-${{ matrix.os }}.zip
+      - name: Compress (Unix)
+        if: startsWith(matrix.os, 'ubuntu-') || startsWith(matrix.os, 'macos-')
+        run: |
+          zip -r release-artifacts/NumberTools-${{ matrix.os }}.zip bin/Release/net10.0/publish/*
       - name: Upload artifact
         uses: actions/upload-artifact@v5
         with:
-          name: NumberTools
+          name: NumberTools-${{ matrix.os }}
           path: release-artifacts
   create-release:
     needs: [build]
@@ -99,8 +60,8 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v6
         with:
-          name: NumberTools
           path: release-artifacts/
+          merge-multiple: true
       - name: Create release
         uses: ncipollo/release-action@v1.20.0
         with:
